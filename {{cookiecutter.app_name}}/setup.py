@@ -56,7 +56,7 @@ with open(os.path.join(HERE, relative_init_path), 'r') as f:
 requires = [
     'Flask==0.10.1',
     'Flask-Cache>=0.13.1',
-    'Flask-DebugToolbar'
+    'Flask-DebugToolbar',
     'Flask-Login',
     'Flask-Mail',
     'Flask-Migrate>=1.4.0',
