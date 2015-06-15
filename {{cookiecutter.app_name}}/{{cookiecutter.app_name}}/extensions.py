@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from flask.ext.bcrypt import Bcrypt
-bcrypt = Bcrypt()
-
 from flask.ext.cache import Cache
 cache = Cache()
 
