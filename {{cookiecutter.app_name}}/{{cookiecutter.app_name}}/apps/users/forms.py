@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from flask import redirect
+from flask import request
+from flask import url_for
 from flask.ext.wtf import Form
 from sqlalchemy.orm.exc import MultipleResultsFound
 from sqlalchemy.orm.exc import NoResultFound
@@ -8,15 +11,37 @@ from wtforms import fields
 from wtforms import validators
 
 from .models import User
+from .utilities import get_redirect
 
 
-class LoginForm(Form):
+class RedirectForm(Form):
+    next = fields.HiddenField()
+
+    def __init__(self, *args, **kwargs):
+        super(RedirectForm, self).__init__(*args, **kwargs)
+        if not self.next.data:
+            self.next.data = get_redirect() or ''
+
+    def redirect(self, endpoint, **values):
+        if is_safe_redirect_url(self.next.data):
+            return redirect(self.next.data)
+        redirect_url = get_redirect()
+        return redirect(redirect_url or url_for(endpoint, **values))
+
+
+
+class LoginForm(RedirectForm):
 
     email = fields.StringField(
         validators=[validators.InputRequired(), validators.Email()])
 
     password = fields.PasswordField(
         validators=[validators.InputRequired()])
+
+    remember = fields.BooleanField()
+
+    def __init__(self, *args, **kwargs):
+        super(LoginForm, self).__init__(*args, **kwargs)
 
     def validate_password(form, field):
         try:

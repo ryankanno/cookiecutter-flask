@@ -60,7 +60,6 @@ requires = [
     'Flask-Login',
     'Flask-Mail',
     'Flask-Migrate>=1.4.0',
-    'Flask-Security',
     'Flask-Script>=2.0.5',
     'Flask-SQLAlchemy>=2.0',
     'Flask-Testing>=0.4.2',

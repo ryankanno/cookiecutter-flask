@@ -7,6 +7,7 @@ from flask import redirect
 from flask import render_template
 from flask import request
 from flask import url_for
+from flask.ext.login import current_user
 from flask.ext.login import login_required
 from flask.ext.login import login_user
 from flask.ext.login import logout_user
@@ -15,6 +16,7 @@ from {{cookiecutter.app_name}}.extensions import login_manager
 from .forms import LoginForm
 from .forms import RegisterForm
 from .models import User
+from .registerable import register_user
 
 users = Blueprint('users', __name__, template_folder='templates')
 
@@ -23,16 +25,7 @@ users = Blueprint('users', __name__, template_folder='templates')
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        login_user(form.user)
-
-        flash('Logged in successfully.')
-
-        # next = request.args.get('next')
-
-        #if not next_is_valid(next):
-        #    return abort(400)
-
-        # return redirect(next or url_for('slash'))
+        login_user(form.user, remember=form.remember.data)
         return redirect(url_for('www.slash'))
     return render_template('users/login.html', form=form)
 
@@ -40,17 +33,18 @@ def login():
 @users.route('/logout')
 @login_required
 def logout():
-    logout_user()
-    return redirect(url_for('www.slash'))
+    if current_user.is_authenticated():
+        logout_user()
+
+    return redirect(request.args.get('next', None) or
+                    url_for('www.slash'))
 
 
 @users.route('/register', methods=('GET', 'POST'))
 def register():
     form = RegisterForm()
     if form.validate_on_submit():
-        form_vals = form.data
-        form_vals.pop('confirm', None)
-        user = User.create(**form_vals)
+        user = register_user(**form.data)
         login_user(user)
         return redirect(url_for('www.slash'))
     return render_template('users/register.html', form=form)

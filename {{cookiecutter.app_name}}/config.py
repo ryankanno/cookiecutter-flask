@@ -23,4 +23,19 @@ class DefaultConfig(object):
 
     LOG_INI = 'etc/logging.ini.json'
 
+    CONFIRMATION_TOKEN_SALT = "PLEASE_CHANGE_ME"
+
+    # Flask-Mail
+    MAIL_SERVER = "localhost"
+    MAIL_PORT = "1025"
+    MAIL_USE_TLS = False
+    MAIL_USE_SSL = False
+    MAIL_DEBUG = DEBUG
+    MAIL_USERNAME = None
+    MAIL_PASSWORD = None
+    MAIL_DEFAULT_SENDER = None
+    MAIL_MAX_EMAILS = None
+    MAIL_SUPPRESS_SEND = False
+    MAIL_ASCII_ATTACHMENTS = False
+
 # vim: filetype=python
