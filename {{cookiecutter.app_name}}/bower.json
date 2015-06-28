@@ -1,7 +1,7 @@
 {
-  "name": "flask-skeleton",
-  "version": "1.0.0",
+  "name": "{{ cookiecutter.app_name }}",
+  "version": "{{ cookiecutter.project_major_version }}.{{ cookiecutter.project_minor_version }}.{{ cookiecutter.project_patch_version }}",
   "dependencies": {
-    "bootstrap": "3.3.2"
+    "bootstrap": "~3.3.2"
   }
 }
