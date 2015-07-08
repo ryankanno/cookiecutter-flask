@@ -18,4 +18,4 @@ Heavily influenced by
 
 ## Todo
 
-  * Add version into __init__.py
+  * ~~Add version into __init__.py~~
