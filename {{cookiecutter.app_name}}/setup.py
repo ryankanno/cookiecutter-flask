@@ -63,6 +63,7 @@ requires = [
     'Flask-Script>=2.0.5',
     'Flask-SQLAlchemy>=2.0',
     'Flask-Testing>=0.4.2',
+    'Flask-WTF>=0.11',
     'bcrypt>=1.1.1'
 ]
 
