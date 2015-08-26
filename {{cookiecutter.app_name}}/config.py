@@ -22,7 +22,7 @@ class DefaultConfig(object):
 
     SQLALCHEMY_DATABASE_URI = 'sqlite:////tmp/test.db'
     DEBUG_TB_INTERCEPT_REDIRECTS = as_bool('DEBUG_TB_INTERCEPT_REDIRECTS',
-        False)
+                                           False)
 
     STATIC_DIR = os.path.join(PROJECT_ROOT, '{{cookiecutter.app_name}}', 'apps', 'static')
     TEMPLATE_DIR = os.path.join(PROJECT_ROOT, '{{cookiecutter.app_name}}', 'apps', 'templates')
