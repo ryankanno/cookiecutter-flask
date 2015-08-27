@@ -19,10 +19,11 @@ def register_user(**kwargs):
         confirmation_token=confirmation_token)
 
     send_mail(
-        'thanks for registering',
-        "ryankanno@gmail.com",
+        'Thank you for registering!',
+        current_app.config['MAIL_DEFAULT_SENDER'],
         user.email,
-        'welcome',
+        plain_template_path='users/emails/welcome.txt',
+        html_template_path='users/emails/welcome.html',
         user=user,
         confirmation_link=confirmation_link)
 

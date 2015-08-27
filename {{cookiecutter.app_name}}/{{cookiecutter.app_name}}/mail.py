@@ -4,13 +4,15 @@
 from flask import render_template
 from flask_mail import Message
 from .extensions import mail
+import logging
 
 
 def send_mail(
         subject,
         sender,
         recipients,
-        template,
+        plain_template_path=None,
+        html_template_path=None,
         **context):
 
     if type(recipients) is not list:
@@ -20,11 +22,14 @@ def send_mail(
                   sender=sender,
                   recipients=recipients)
 
-    msg.body = render_template(
-        "{0}/{1}.txt".format('users/emails', template), **context)
+    if plain_template_path:
+        msg.body = render_template(plain_template_path, **context)
 
-    msg.html = render_template(
-        "{0}/{1}.html".format('users/emails', template), **context)
+    if html_template_path:
+        msg.html = render_template(html_template_path, **context)
+
+    logging.debug("Sending email from {0} to {1} recipients"
+        .format(sender, len(recipients)))
 
     mail.send(msg)
 

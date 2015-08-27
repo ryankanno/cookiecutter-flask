@@ -81,7 +81,7 @@ def configure_error_handlers(app):
 
 
 def configure_logging(app):
-    log_ini = os.path.join(app.root_path, app.config['LOG_INI'])
+    log_ini = os.path.join(app.config['PROJECT_ROOT'], app.config['LOG_INI'])
 
     if os.path.exists(log_ini):
         with open(log_ini, 'rt') as f:
