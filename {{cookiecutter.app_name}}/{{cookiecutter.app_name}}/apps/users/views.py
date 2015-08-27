@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from flask import Blueprint
+from flask import jsonify
 from flask import redirect
 from flask import render_template
 from flask import request
@@ -12,26 +13,66 @@ from flask.ext.login import login_user
 from flask.ext.login import logout_user
 
 from {{cookiecutter.app_name}}.extensions import login_manager
+from .decorators import anonymous_user_required
 from .forms import LoginForm
 from .forms import RegisterForm
 from .models import User
 from .registerable import register_user
+from werkzeug.datastructures import MultiDict
 
 users = Blueprint('users', __name__, template_folder='templates')
 
 
-@users.route('/confirm_email', methods=('GET'))
+@users.route('/confirm_email', methods=['GET'])
 def confirm_email():
     return redirect('/')
 
 
+@users.route('/forgot_password', methods=['GET', 'POST'])
+@anonymous_user_required
+def forgot_password():
+    if request.json:
+        form = ForgotPasswordForm(MultiDict(request.json))
+    else:
+        form = ForgotPasswordForm()
+
+    if form.validate_on_submit():
+        send_reset_password_instructions(form.user)
+
+    if request.json:
+        return _render_json(form)
+
+    return render_template('users/forgot_password.html', form=form)
+
+
 @users.route('/login', methods=['GET', 'POST'])
 def login():
-    form = LoginForm()
+    form = LoginForm(MultiDict(request.json)) if request.json else LoginForm()
+
     if form.validate_on_submit():
         login_user(form.user, remember=form.remember.data)
-        return redirect(url_for('www.slash'))
-    return render_template('users/login.html', form=form)
+
+        if not request.json:
+            return redirect(url_for('www.slash'))
+
+    if request.json:
+        return _render_json(form)
+    else:
+        return render_template('users/login.html', form=form)
+
+
+def _render_json(form):
+
+    if len(form.errors) > 0:
+        code = 400
+        response = dict(errors=form.errors)
+    else:
+        code = 200
+        response = {}
+        response['user'] = dict(id=str(form.user.id))
+        response['user']['authentication_token'] = form.user.get_auth_token()
+
+    return jsonify(dict(meta=dict(code=code), response=response))
 
 
 @users.route('/logout')

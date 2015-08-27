@@ -14,6 +14,10 @@ from .utilities import get_redirect
 from .utilities import is_safe_redirect_url
 
 
+class ForgotPasswordForm(Form):
+    pass
+
+
 class RedirectForm(Form):
     next = fields.HiddenField()
 
