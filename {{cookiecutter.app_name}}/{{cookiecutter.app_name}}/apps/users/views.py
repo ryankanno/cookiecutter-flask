@@ -20,6 +20,11 @@ from .registerable import register_user
 users = Blueprint('users', __name__, template_folder='templates')
 
 
+@users.route('/confirm_email', methods=('GET'))
+def confirm_email():
+    return redirect('/')
+
+
 @users.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()

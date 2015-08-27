@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from flask import current_app
+from flask import url_for
 import hashlib
 from itsdangerous import URLSafeTimedSerializer
 
@@ -11,7 +12,8 @@ def generate_confirmation_token_and_link(user):
     Generates a confirmation token and a link for the user
     """
     token = generate_confirmation_token(user)
-    return token, token
+    url = url_for('users.confirm_email', token=token, _external=True)
+    return token, url
 
 
 def generate_confirmation_token(user):
