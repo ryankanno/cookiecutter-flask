@@ -47,11 +47,12 @@ def createdb():
 
 
 @manager.command
-def dropdb():
+def dropdb(force=False):
     """
     Drops all database tables
     """
-    if prompt_bool("Are you sure you want to lose all your data"):
+
+    if force or prompt_bool("Are you sure you want to lose all your data"):
         db.drop_all()
 
 
