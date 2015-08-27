@@ -42,14 +42,4 @@ def get_redirect(explicit_redirect=None):
             return redirect
 
 
-def generate_confirmation_link(user):
-    """
-    Generates a confirmation link for a user
-    """
-    serializer = URLSafeTimedSerializer(current_app.config['SECRET_KEY'])
-    return serializer.dumps(
-        user.email,
-        salt=current_app.config['SECURITY_PASSWORD_SALT'])
-
-
 # vim: filetype=python

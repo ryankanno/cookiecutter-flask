@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from {{cookiecutter.app_name}}.mail import send_mail
+from flask import current_app
+from .confirmable import generate_confirmation_token_and_link
 from .models import User
 from .signals import user_registered
-from .confirmable import generate_confirmation_token_and_link
+
+from {{cookiecutter.app_name}}.mail import send_mail
 
 
 def register_user(**kwargs):
