@@ -20,7 +20,4 @@ mail = Mail()
 from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
-from flask.ext.babel import Babel
-babel = Babel()
-
 # vim: filetype=python
