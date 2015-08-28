@@ -82,7 +82,9 @@ def send_password_reset_notice(user):
         html_template_path='users/emails/reset_password_notice.html',
         user=user)
 
-    reset_password_notice_sent.send(**signal_context)
+    reset_password_notice_sent.send(
+        current_app._get_current_object(),
+        **signal_context)
 
 
 def send_reset_password_instructions(user):
@@ -100,7 +102,9 @@ def send_reset_password_instructions(user):
         html_template_path='users/emails/reset_password_instructions.html',
         **mail_context)
 
-    reset_password_instructions_sent.send(**signal_context)
+    reset_password_instructions_sent.send(
+        current_app._get_current_object(),
+        **signal_context)
 
 
 def update_password(user, password):

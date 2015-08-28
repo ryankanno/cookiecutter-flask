@@ -23,7 +23,9 @@ def register_user(**kwargs):
         signal_context['confirmation_token'] = confirmation_token
         mail_context['confirmation_link'] = confirmation_link
 
-    user_registered.send(**signal_context)
+    user_registered.send(
+            current_app._get_current_object(),
+            **signal_context)
 
     send_mail(
         'Thank you for registering!',

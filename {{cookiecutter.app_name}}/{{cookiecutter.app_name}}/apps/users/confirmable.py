@@ -100,7 +100,9 @@ def send_confirmation_instructions(user):
         html_template_path='users/emails/confirmation_instructions.html',
         **mail_context)
 
-    confirmation_instructions_sent.send(**signal_context)
+    confirmation_instructions_sent.send(
+        current_app._get_current_object(),
+        **signal_context)
 
 
 def system_requires_confirmation():
