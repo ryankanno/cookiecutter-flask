@@ -1,5 +1,0 @@
-Thank you for registering.
-
-Your next step is to confirm your email address.
-
-Please cut and paste {{confirmation_link}} into a browser.

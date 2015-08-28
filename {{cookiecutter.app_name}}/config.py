@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import datetime
 import os
 from os import environ as env
 from {{cookiecutter.app_name}}.apps.www import www
@@ -31,8 +32,17 @@ class DefaultConfig(object):
 
     LOG_INI = 'etc/logging.ini.json'
 
-    CONFIRMATION_TOKEN_SALT = env.get('CONFIRMATION_TOKEN_SALT',
-                                      'PLEASE_CHANGE_ME')
+    # Users Register / Login
+    USERS_CONFIRMATION_REQUIRED = \
+        as_bool('USERS_CONFIRMATION_REQUIRED', True)
+    USERS_REGISTER_CONFIRMATION_TOKEN_MAX_AGE_IN_SECONDS = \
+        env.get('USERS_REGISTER CONFIRMATION_TOKEN_MAX_AGE_IN_SECONDS', 604800)
+    USERS_REGISTER_CONFIRMATION_TOKEN_SALT = \
+        env.get('USERS_REGISTER CONFIRMATION_TOKEN_SALT', 'PLEASE_CHANGE_ME')
+    USERS_RESET_PASSWORD_TOKEN_MAX_AGE_IN_SECONDS = \
+        env.get('USERS_RESET_PASSWORD_TOKEN_MAX_AGE_IN_SECONDS', 604800)
+    USERS_RESET_PASSWORD_TOKEN_SALT = \
+        env.get('USERS_RESET_PASSWORD_TOKEN_SALT ', 'PLEASE_CHANGE_ME')
 
     # Flask-Mail
     MAIL_SERVER = env.get('MAIL_SERVER,', 'localhost')
@@ -46,5 +56,8 @@ class DefaultConfig(object):
     MAIL_MAX_EMAILS = env.get('MAIL_MAX_EMAILS', None)
     MAIL_SUPPRESS_SEND = as_bool('MAIL_USE_SSL', False)
     MAIL_ASCII_ATTACHMENTS = as_bool('MAIL_USE_SSL', False)
+
+    # Flask-Login
+    REMEBER_COOKIE_DURATION = datetime.timedelta(days=7)
 
 # vim: filetype=python

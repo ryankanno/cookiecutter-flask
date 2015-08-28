@@ -55,17 +55,18 @@ with open(os.path.join(HERE, relative_init_path), 'r') as f:
 
 requires = [
     'Flask==0.10.1',
-    'Flask-Cache>=0.13.1',
-    'Flask-DebugToolbar',
-    'Flask-Login',
-    'Flask-Mail',
-    'Flask-Migrate>=1.4.0',
-    'Flask-Script>=2.0.5',
-    'Flask-SQLAlchemy>=2.0',
-    'Flask-Testing>=0.4.2',
-    'Flask-WTF>=0.11',
-    'bcrypt>=1.1.1',
-    'gunicorn>=19.3.0'
+    'Flask-Cache==0.13.1',
+    'Flask-DebugToolbar==0.10.0',
+    'Flask-Login==0.2.11',
+    'Flask-Mail==0.9.1',
+    'Flask-Migrate==1.4.0',
+    'Flask-Script==2.0.5',
+    'Flask-SQLAlchemy==2.0',
+    'Flask-Testing==0.4.2',
+    'Flask-WTF==0.11',
+    'bcrypt==1.1.1',
+    'gunicorn==19.3.0',
+    'structlog==15.2.0'
 ]
 
 tests_require = ['pytest']

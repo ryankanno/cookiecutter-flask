@@ -6,9 +6,9 @@
 
 <div id="register">
     <form action="{{ url_for('users.register') }}" method="POST">
-        {{ form.csrf_token }}
+        {{ register_form.csrf_token }}
         <h2>Please register</h2>
-        {{ forms.render(form) }}
+        {{ forms.render(register_form) }}
         <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
     </form>
 </div>

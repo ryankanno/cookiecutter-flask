@@ -21,6 +21,7 @@ def get_app(config=None, **kwargs):
     app = Flask(__name__, **kwargs)
 
     configure_app(app, config)
+    configure_template(app)
 
     configure_extensions(app)
     configure_blueprints(app)
@@ -87,5 +88,10 @@ def configure_logging(app):
         with open(log_ini, 'rt') as f:
             log_config = json.load(f)
         logging.config.dictConfig(log_config)
+
+
+def configure_template(app):
+    app.jinja_env.trim_blocks = True
+    app.jinja_env.lstrip_blocks = True
 
 # vim: filetype=python

@@ -6,9 +6,13 @@
 {% else %}
   <div class="form-group">
     {{ field.label }}
-    {% if field.errors%}
+    {% if field.errors %}
       <div class="alert alert-danger" role="alert">
-      {{ field.errors|join(' ') }}
+      {% for error in field.errors %}
+          {% if error %}
+              {{ error }}
+          {% endif %}
+      {% endfor %}
       </div>
     {% endif %}
     {{ field(class_="form-control") }}

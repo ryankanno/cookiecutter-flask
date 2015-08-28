@@ -58,3 +58,6 @@ target/
 
 # static files
 {{ cookiecutter.app_name }}/apps/static/components/**/*
+
+# pyenv ignore
+.python-version
