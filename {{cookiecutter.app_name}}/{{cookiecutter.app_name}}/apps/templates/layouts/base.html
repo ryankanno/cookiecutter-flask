@@ -46,17 +46,6 @@
               <a class="navbar-brand" href="{{ url_for('www.slash') }}">Project Name</a>
             </div>
             <div class="navbar-collapse collapse">
-              <ul class="nav navbar-nav">
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="#">Action</a></li>
-                    <li class="divider"></li>
-                    <li class="dropdown-header">Nav header</li>
-                    <li><a href="#">Separated link</a></li>
-                  </ul>
-                </li>
-              </ul>
               <ul class="nav navbar-nav navbar-right">
               {% if current_user.is_authenticated() %}
                 <li class="dropdown">
@@ -84,32 +73,13 @@
               <div class="container">
                 <h1>Congratulations!</h1>
                 <p>
-                    You've configured your very first <a href="https://github.com/audreyr/cookiecutter">Cookiecutter</a> project!
-                    Lucky for you, it's using the wonderful <a href="https://github.com/mitsuhiko/flask">Flask</a>
-                    framework.  Click below to find out more!
+                    You've created your very first project from a <a href="https://github.com/audreyr/cookiecutter">Cookiecutter</a> template.
+                    Lucky for you, this Cookiecutter uses the wonderful <a href="https://github.com/mitsuhiko/flask">Flask</a>
+                    web framework, <a href="https://getbootstrap.com">Bootstrap</a> front-end framework, and has an integrated User registration system.
+                    It's highly opinionated, but hopefully, still very useful.  Click below to see what else you'll be getting.
                 </p>
-                <p><a href="https://github.com/ryankanno/cookiecutter-flask" class="btn btn-primary btn-lg">Read more &raquo;</a></p>
+                <p><a href="https://github.com/ryankanno/cookiecutter-flask" class="btn btn-primary btn-lg">Show me the source, Luke&raquo;</a></p>
               </div>
-            </div>
-            <div class="container">
-              <div class="row">
-                <div class="col-lg-4">
-                  <h2>Features</h2>
-                  <p></p>
-                  <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
-                </div>
-                <div class="col-lg-4">
-                  <h2>Heading</h2>
-                  <p></p>
-                  <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
-               </div>
-                <div class="col-lg-4">
-                  <h2>Heading</h2>
-                  <p></p>
-                  <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
-                </div>
-              </div>
-              <hr>
             </div>
         {% endblock main_content %}
     </div>
