@@ -1,4 +1,20 @@
+body {
+  div#login {
+    margin: 0 auto;
+    padding:2em;
+    width: 400px;
+    border:1px solid #eee;
+  }
+
+  div#register {
+    margin: 0 auto;
+    padding:2em;
+    width: 800px;
+    border:1px solid #eee;
+  }
+}
+
 footer {
-  margin: 0 auto;
+  margin: 2em auto;
   p { text-align: center; }
 }
