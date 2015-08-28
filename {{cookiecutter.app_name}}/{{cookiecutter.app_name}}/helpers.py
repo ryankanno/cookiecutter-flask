@@ -18,4 +18,5 @@ def constant_time_compare(val1, val2):
     for x, y in zip(val1, val2):
         result |= ord(x) ^ ord(y)
     return result == 0
+
 # vim: filetype=python
