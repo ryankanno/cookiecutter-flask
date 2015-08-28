@@ -4,7 +4,9 @@
 from flask import render_template
 from flask_mail import Message
 from .extensions import mail
-import logging
+from structlog import get_logger
+
+logger = get_logger()
 
 
 def send_mail(
@@ -28,8 +30,10 @@ def send_mail(
     if html_template_path:
         msg.html = render_template(html_template_path, **context)
 
-    logging.debug("Sending email from {0} to {1} recipients"
-        .format(sender, len(recipients)))
+    logger.debug("Sending email",
+        subject=subject, sender=sender, recipients=recipients,
+        plain_template_path=plain_template_path,
+        html_template_path=html_template_path)
 
     mail.send(msg)
 
