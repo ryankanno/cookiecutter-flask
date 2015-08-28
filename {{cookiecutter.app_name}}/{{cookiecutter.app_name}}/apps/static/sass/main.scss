@@ -2,19 +2,28 @@ body {
   div#login {
     margin: 0 auto;
     padding:2em;
-    width: 400px;
-    border:1px solid #eee;
+    width: 500px;
   }
-
   div#register {
     margin: 0 auto;
     padding:2em;
     width: 800px;
-    border:1px solid #eee;
+  }
+  div#forgot_password {
+    margin: 0 auto;
+    padding:2em;
+    width: 800px;
+  }
+  div#send_confirmation {
+    margin: 0 auto;
+    padding:2em;
+    width: 800px;
   }
 }
 
 footer {
-  margin: 2em auto;
+  margin: 3em auto;
+  border-top: 1px solid #eee;
+  padding-top: 2em;
   p { text-align: center; }
 }
