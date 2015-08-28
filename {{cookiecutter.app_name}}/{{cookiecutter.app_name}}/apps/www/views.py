@@ -11,7 +11,6 @@ www = Blueprint('www', __name__, template_folder='templates')
 
 @www.route('/')
 def slash():
-    form = LoginForm()
-    return render_template('www/slash.html', form=form)
+    return render_template('www/slash.html')
 
 # vim: filetype=python
