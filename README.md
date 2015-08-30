@@ -1,28 +1,24 @@
 # Introduction
 
-This is a fairly opinionated [Flask](http://flask.pocoo.org) skeleton for
-[Cookiecutter](https://github.com/audreyr/cookiecutter).
-
-Heavily influenced by
-
-  * [flask-skeleton](https://github.com/ryankanno/flask-skeleton)
-  * [cookiecutter-py](https://github.com/ryankanno/cookiecutter-py)
+A [cookiecutter](https://github.com/audreyr/cookiecutter) for [Flask](http://flask.pocoo.org).
 
 # Topics
 
-- [Main features](#main-features)
+- [Features](#features)
 - [Quick start](#quick-start)
 - [Usage](#usage)
 
-# Main features
+## Features
 
-  * Automatically created pyenv-virtualenv
-  * Teamocil file
+  * For Flask 0.10.1
+  * Twitter [Bootstrap](http://getbootstrap.com) 3
+  * Customized user registration
+  * Gulp w/ Webpack integration
+  * Logging configured via structlog
+
+  * Automatic pyenv-virtualenv creation
+  * Automatic teamocil file
   * Konch configuration
-  * Bootstrap 3
-  * User registration
-  * Gulpfile
-  * Logging configured with structlog
 
 # Quick start
 
