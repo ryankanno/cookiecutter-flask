@@ -15,7 +15,6 @@ A [cookiecutter](https://github.com/audreyr/cookiecutter) for [Flask](http://fla
   * Customized user registration
   * Gulp w/ Webpack integration
   * Logging configured via structlog
-
   * Automatic pyenv-virtualenv creation
   * Automatic teamocil file
   * Konch configuration
