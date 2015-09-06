@@ -14,8 +14,8 @@ def register_user(**kwargs):
     kwargs.pop('password_confirm', None)
     user = User.create(**kwargs)
 
-    signal_context = { 'user': user }
-    mail_context = { 'user': user }
+    signal_context = {'user': user}
+    mail_context = {'user': user}
 
     if system_requires_confirmation():
         confirmation_token, confirmation_link = \
@@ -24,8 +24,8 @@ def register_user(**kwargs):
         mail_context['confirmation_link'] = confirmation_link
 
     user_registered.send(
-            current_app._get_current_object(),
-            **signal_context)
+        current_app._get_current_object(),
+        **signal_context)
 
     send_mail(
         'Thank you for registering!',
