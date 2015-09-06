@@ -29,7 +29,7 @@ def confirm_confirmation_token(token):
     max_age_key = 'USERS_REGISTER_CONFIRMATION_TOKEN_MAX_AGE_IN_SECONDS'
     max_age = current_app.config[max_age_key]
 
-    salt=current_app.config['USERS_REGISTER_CONFIRMATION_TOKEN_SALT']
+    salt = current_app.config['USERS_REGISTER_CONFIRMATION_TOKEN_SALT']
     serializer = URLSafeTimedSerializer(current_app.config['SECRET_KEY'])
 
     user, data = None, None
@@ -52,7 +52,7 @@ def confirm_confirmation_token(token):
     expired = expired and (user is not None)
 
     logger.debug("confirmation token confirmed?",
-        expired=expired, invalid=invalid, user=user, data=data)
+                 expired=expired, invalid=invalid, user=user, data=data)
 
     return expired, invalid, user, data
 
@@ -89,8 +89,8 @@ def send_confirmation_instructions(user):
     confirmation_token, confirmation_link = \
         generate_confirmation_token_and_link(user)
 
-    signal_context = { 'user': user, 'confirmation_token': confirmation_token }
-    mail_context = { 'user': user, 'confirmation_link': confirmation_link }
+    signal_context = {'user': user, 'confirmation_token': confirmation_token}
+    mail_context = {'user': user, 'confirmation_link': confirmation_link}
 
     send_mail(
         'Please confirm your email address',
@@ -116,7 +116,7 @@ def user_requires_confirmation(user):
     :param user: User that needs confirmation
     """
     return system_requires_confirmation() and \
-           user.confirmed_at is None
+        user.confirmed_at is None
 
 
 # vim: filetype=python
