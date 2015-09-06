@@ -3,8 +3,8 @@
 
 import bcrypt
 import datetime
-from flask import current_app
 from flask.ext.login import UserMixin
+import hashlib
 from sqlalchemy.ext.hybrid import hybrid_property
 from structlog import get_logger
 from .utilities import generate_token
