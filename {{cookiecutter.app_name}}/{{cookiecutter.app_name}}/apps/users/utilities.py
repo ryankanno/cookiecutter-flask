@@ -8,7 +8,6 @@ except ImportError:  # pragma: no cover
 
 from flask import current_app
 from flask import request
-import hashlib
 from itsdangerous import URLSafeTimedSerializer
 
 from {{cookiecutter.app_name}}.utilities import config_value
