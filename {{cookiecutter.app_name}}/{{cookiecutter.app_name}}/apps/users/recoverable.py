@@ -23,7 +23,7 @@ def confirm_reset_password_token(token):
     max_age_key = 'USERS_RESET_PASSWORD_TOKEN_MAX_AGE_IN_SECONDS'
     max_age = current_app.config[max_age_key]
 
-    salt=current_app.config['USERS_RESET_PASSWORD_TOKEN_SALT']
+    salt = current_app.config['USERS_RESET_PASSWORD_TOKEN_SALT']
     serializer = URLSafeTimedSerializer(current_app.config['SECRET_KEY'])
 
     user, data = None, None
@@ -51,7 +51,7 @@ def confirm_reset_password_token(token):
     expired = expired and (user is not None)
 
     logger.debug("reset password token confirmed?",
-        expired=expired, invalid=invalid, user=user, data=data)
+                 expired=expired, invalid=invalid, user=user, data=data)
 
     return expired, invalid, user, data
 
@@ -72,7 +72,7 @@ def generate_reset_password_token(user):
 
 
 def send_password_reset_notice(user):
-    signal_context = { 'user': user }
+    signal_context = {'user': user}
 
     send_mail(
         'Your password has been reset',
@@ -91,14 +91,16 @@ def send_reset_password_instructions(user):
     reset_password_token, reset_password_link = \
         generate_reset_password_token_and_link(user)
 
-    signal_context = { 'user': user, 'reset_password_token': reset_password_token }
-    mail_context = { 'user': user, 'reset_password_link': reset_password_link }
+    signal_context = {'user': user,
+                      'reset_password_token': reset_password_token}
+    mail_context = {'user': user, 'reset_password_link': reset_password_link}
 
     send_mail(
         'Please reset your password',
         current_app.config['MAIL_DEFAULT_SENDER'],
         user.email,
-        plain_template_path='users/emails/reset_password_instructions.txt.html',
+        plain_template_path=('users/emails/'
+                             'reset_password_instructions.txt.html'),
         html_template_path='users/emails/reset_password_instructions.html',
         **mail_context)
 
