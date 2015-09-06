@@ -25,6 +25,7 @@ _default_form_field_labels = {
     'remember_me': 'Remember Me',
 }
 
+
 class ValidatorMixin(object):
     def __call__(self, form, field):
         if self.message and self.message.isupper():
@@ -107,7 +108,7 @@ class PasswordConfirmFormMixin(object):
     password_confirm = fields.PasswordField(
         get_form_field_label('password_confirm'),
         validators=[EqualTo('password',
-                             message='PASSWORD_CONFIRMATION_INVALID')])
+                    message='PASSWORD_CONFIRMATION_INVALID')])
 
 
 class ForgotPasswordForm(Form):
@@ -144,7 +145,6 @@ class LoginForm(Form,
 
     def __init__(self, *args, **kwargs):
         super(LoginForm, self).__init__(*args, **kwargs)
-
 
     def validate(self):
         if not super(LoginForm, self).validate():
